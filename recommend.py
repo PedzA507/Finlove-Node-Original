@@ -22,7 +22,7 @@ def create_connection():
 # Path to the folder where images are stored
 IMAGE_FOLDER = os.path.join(os.getcwd(), 'assets', 'user')
 
-@app.route('/ai/recommend/<int:id>', methods=['GET'])
+@app.route('/ai_v2/recommend/<int:id>', methods=['GET'])
 def recommend(id):
     # สร้างการเชื่อมต่อใหม่ทุกครั้งที่เรียกใช้งาน
     conn = create_connection()
@@ -79,12 +79,12 @@ def recommend(id):
     # ปรับเส้นทางของ imageFile เพื่อให้ชี้ไปที่ API สำหรับโหลดรูปภาพ
     for index, user in recommended_users.iterrows():
         if user['imageFile']:
-            recommended_users.at[index, 'imageFile'] = f"http://{request.host}/api/user/{user['imageFile']}"
+            recommended_users.at[index, 'imageFile'] = f"http://{request.host}/ai_v2/user/{user['imageFile']}"
 
     return jsonify(recommended_users[['UserID', 'nickname', 'imageFile', 'verify']].to_dict(orient='records')), 200
 
 
-@app.route('/ai/user/<filename>', methods=['GET'])
+@app.route('/ai_v2_v2/user/<filename>', methods=['GET'])
 def get_user_image(filename):
     # Full path to the image file
     image_path = os.path.join(IMAGE_FOLDER, filename)
