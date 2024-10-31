@@ -2,9 +2,9 @@ CREATE DATABASE  IF NOT EXISTS `finlove` /*!40100 DEFAULT CHARACTER SET utf8mb4 
 USE `finlove`;
 -- MySQL dump 10.13  Distrib 8.0.38, for Win64 (x86_64)
 --
--- Host: localhost    Database: finlove
+-- Host: 127.0.0.1    Database: finlove
 -- ------------------------------------------------------
--- Server version	8.4.0
+-- Server version	9.1.0
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -70,7 +70,7 @@ CREATE TABLE `chats` (
   KEY `senderID` (`senderID`),
   CONSTRAINT `chats_ibfk_1` FOREIGN KEY (`matchID`) REFERENCES `matches` (`matchID`),
   CONSTRAINT `chats_ibfk_2` FOREIGN KEY (`senderID`) REFERENCES `user` (`UserID`)
-) ENGINE=InnoDB AUTO_INCREMENT=115 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=116 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -79,7 +79,7 @@ CREATE TABLE `chats` (
 
 LOCK TABLES `chats` WRITE;
 /*!40000 ALTER TABLE `chats` DISABLE KEYS */;
-INSERT INTO `chats` VALUES (97,27,125,'hello','2024-10-28 15:14:15',NULL),(98,27,125,'my','2024-10-28 15:14:26',NULL),(99,27,125,'boo','2024-10-28 15:14:35',NULL),(100,27,126,'Hello jay','2024-10-28 15:15:14',NULL),(101,27,126,'ลอบ ชูบ ลีม บูม ไหม เจ้','2024-10-28 15:15:32',NULL),(102,27,126,'แลบอูบลมอมไหมคะเจ้ ทูเดย?','2024-10-28 15:15:55',NULL),(103,27,126,'แลบอู้บเลียวสู','2024-10-28 15:16:03',NULL),(104,28,119,'hello','2024-10-28 17:05:25',NULL),(105,28,128,'สวัสดีครับ','2024-10-28 17:05:26',NULL),(106,28,119,'d ค่ะ','2024-10-29 14:55:24',NULL),(107,30,129,'Dekub Fullll','2024-10-29 15:35:50',NULL),(108,30,119,'hi','2024-10-29 15:36:02',NULL),(109,30,129,'nong Sod a paol','2024-10-29 15:36:03',NULL),(110,30,129,'love u','2024-10-29 15:36:13',NULL),(111,30,129,'iwiwiwiwi','2024-10-29 15:36:18',NULL),(112,30,129,'<====O','2024-10-29 15:36:23',NULL),(113,30,129,'Sorry','2024-10-29 15:36:55',NULL),(114,30,119,'love u so','2024-10-29 15:37:06',NULL);
+INSERT INTO `chats` VALUES (97,27,125,'hello','2024-10-28 15:14:15',NULL),(98,27,125,'my','2024-10-28 15:14:26',NULL),(99,27,125,'boo','2024-10-28 15:14:35',NULL),(100,27,126,'Hello jay','2024-10-28 15:15:14',NULL),(101,27,126,'ลอบ ชูบ ลีม บูม ไหม เจ้','2024-10-28 15:15:32',NULL),(102,27,126,'แลบอูบลมอมไหมคะเจ้ ทูเดย?','2024-10-28 15:15:55',NULL),(103,27,126,'แลบอู้บเลียวสู','2024-10-28 15:16:03',NULL),(104,28,119,'hello','2024-10-28 17:05:25',NULL),(105,28,128,'สวัสดีครับ','2024-10-28 17:05:26',NULL),(106,28,119,'d ค่ะ','2024-10-29 14:55:24',NULL),(107,30,129,'Dekub Fullll','2024-10-29 15:35:50',NULL),(108,30,119,'hi','2024-10-29 15:36:02',NULL),(109,30,129,'nong Sod a paol','2024-10-29 15:36:03',NULL),(110,30,129,'love u','2024-10-29 15:36:13',NULL),(111,30,129,'iwiwiwiwi','2024-10-29 15:36:18',NULL),(112,30,129,'<====O','2024-10-29 15:36:23',NULL),(113,30,129,'Sorry','2024-10-29 15:36:55',NULL),(114,30,119,'love u so','2024-10-29 15:37:06',NULL),(115,30,119,'Jeo','2024-10-31 13:30:27',NULL);
 /*!40000 ALTER TABLE `chats` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -395,7 +395,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (119,'ant','$2b$10$xF72PfFkIf1r4foNIFpWDe8zKj1aIIHuCYxbhxsv8j85ZmIGMr5Jq','Methaporn','Limrostham','AnT','pedza507@gmail.com','0642727318',180,'bangkok','2003-10-06','image8671668793612128899.jpg',1,2,1,2,0,'2024-10-30 03:33:20',NULL,NULL,1,1),(120,'Flukey','$2b$10$lgaIMdviz9UPYtR2ro8ajuIqyhqah6aFXPHnmHnrJXeLECMJGjDCe','ทนชัย','บัวรง','ฟลัก','thanachai.bua@rmutto.ac.th','0896586458',199,'บ้าน','2004-10-27','fbfa9a04-a79b-4fdb-a1c8-5d87785bca1c.jpg',1,2,1,2,0,'2024-10-29 00:45:57',NULL,NULL,1,1),(121,'new','$2b$10$jfjqIDUtTTPqH3vf731ADeYLdwPAXaS0VOfHMYUyzmJCKKfdQG26.','ธวัชชัย','กรีเวก','นิว','tawatchai.kee@rmutto.ac.th','0922732903',175,'ลาดพร้าว63','2004-04-05','image7000707563503606090.jpg',1,2,3,2,0,'2024-10-28 07:53:38',NULL,NULL,1,0),(122,'mark','$2b$10$r9/Zfxa07c/k3tA1KXR6bOqLliE7Q/eEFejmHXJxvyZcaworsMBiK','สิทธินนท์','สิงห์พะเนา','มาร์ค','sittinon.sin@rmutto.ac.th','0999463125',175,'ลาดพร้าว','2003-12-11','052fad33-ff4c-4120-971d-444a07fe0ffa.jpg',1,2,4,2,0,'2024-10-29 07:20:07',NULL,NULL,1,0),(123,'beamdota','$2b$10$p07TiELppYG2Yfi7sLbCh.pjnl4ydaLXtKahszlthA62stcI9gO66','vorrapat','kobsinkha','beam','9beamdota@gmail.com','0855240541',171,'78 bankok','2004-07-08','image2488230466155421622.jpg',1,2,1,2,0,'2024-10-28 08:00:58',NULL,NULL,1,0),(124,'first','$2b$10$ZeLYhpWNCj6dFTDu5pX/Wu6HnhpTIYNOjjktiE19GGBshpUmZhNXu','Ananchai','Kamtom','first','frist519@gmail.com','0649083637',171,'54/101','2002-01-19','image3578457392566033464.jpg',1,2,3,2,0,NULL,NULL,NULL,1,0),(125,'yammy','$2b$10$PNq2C3TGdFXBQfXiGdO.bOMAT7zBYVl78GwoRzFP4GTRq2CWToXoK','ralinthip','sakunain','yam','yam17.tuesday@gmail.com','0834526953',153,'ราชมงคล','2004-02-03','image3184228084906191281.jpg',2,2,3,2,0,'2024-10-28 08:13:38',NULL,NULL,1,0),(126,'Alxne','$2b$10$9MoUFpFhIXgRjsJP91E2WO6L798G2gH74hUSF8fWsiG2RgufwnLyO','Alxne','Dekdee','Alxne','suttipong.poo@rmutto.ac.th','0639542700',175,'กทม','2004-05-22','image7423651299233763588.jpg',3,2,2,1,0,'2024-10-28 08:15:04',NULL,NULL,1,0),(127,'toey','$2b$10$RQ3aSOZcWZ5Pm6DbkbMHnODTsBbSfAAB8P5jW/wymInGa5uQPY57C','Thanon','Srisukarn','Toey','teeprakorn@fff.com','0855111711',900,'Bangkok','1971-10-28','image7663523415649047225.jpg',2,3,1,1,0,'2024-10-28 08:19:57',NULL,NULL,1,0),(128,'kittipob','$2b$10$YvWnr1e85A58rahL0vZ6CeFaRJLlxacw40B3Wjdxq0B8dKIrVpcJa','kittipob','jirapanichakul','nack','kittipob242@gmail.com','0800262835',187,'rmutto','2003-09-22','17b6689f-4501-48ef-8ca3-c2faba18453c.jpg',1,2,3,2,0,'2024-10-28 10:04:25',NULL,NULL,1,1),(129,'wmmyo123','$2b$10$s9okBbtH1hPbNjzzJvoRVO3OxSFXQScvCu6j1yxPcihohcdZLsBJC','Jiratikarn','Prisricram','Dodo','wmmyo123@gmail.com','0958884525',175,'219 Phathum Tanee','2003-12-07','image6929627347264205590.jpg',1,2,4,2,1,'2024-10-29 08:42:49',NULL,NULL,1,0);
+INSERT INTO `user` VALUES (119,'ant','$2b$10$xF72PfFkIf1r4foNIFpWDe8zKj1aIIHuCYxbhxsv8j85ZmIGMr5Jq','Methaporn','Limrostham','AnT','pedza507@gmail.com','0642727318',180,'bangkok','2003-10-06','image8671668793612128899.jpg',1,2,1,2,0,'2024-10-31 06:32:06',NULL,NULL,1,1),(120,'Flukey','$2b$10$lgaIMdviz9UPYtR2ro8ajuIqyhqah6aFXPHnmHnrJXeLECMJGjDCe','ทนชัย','บัวรง','ฟลัก','thanachai.bua@rmutto.ac.th','0896586458',199,'บ้าน','2004-10-26','d91dfab9-0ac0-4254-a400-79a5b257662d.jpg',1,2,1,2,0,'2024-10-31 06:28:33',NULL,NULL,1,1),(121,'new','$2b$10$jfjqIDUtTTPqH3vf731ADeYLdwPAXaS0VOfHMYUyzmJCKKfdQG26.','ธวัชชัย','กรีเวก','นิว','tawatchai.kee@rmutto.ac.th','0922732903',175,'ลาดพร้าว63','2004-04-05','image7000707563503606090.jpg',1,2,3,2,0,'2024-10-28 07:53:38',NULL,NULL,1,0),(122,'mark','$2b$10$r9/Zfxa07c/k3tA1KXR6bOqLliE7Q/eEFejmHXJxvyZcaworsMBiK','สิทธินนท์','สิงห์พะเนา','มาร์ค','sittinon.sin@rmutto.ac.th','0999463125',175,'ลาดพร้าว','2003-12-11','052fad33-ff4c-4120-971d-444a07fe0ffa.jpg',1,2,4,2,0,'2024-10-29 07:20:07',NULL,NULL,1,0),(123,'beamdota','$2b$10$p07TiELppYG2Yfi7sLbCh.pjnl4ydaLXtKahszlthA62stcI9gO66','vorrapat','kobsinkha','beam','9beamdota@gmail.com','0855240541',171,'78 bankok','2004-07-08','image2488230466155421622.jpg',1,2,1,2,0,'2024-10-28 08:00:58',NULL,NULL,1,0),(124,'first','$2b$10$ZeLYhpWNCj6dFTDu5pX/Wu6HnhpTIYNOjjktiE19GGBshpUmZhNXu','Ananchai','Kamtom','first','frist519@gmail.com','0649083637',171,'54/101','2002-01-19','image3578457392566033464.jpg',1,2,3,2,0,NULL,NULL,NULL,1,0),(125,'yammy','$2b$10$PNq2C3TGdFXBQfXiGdO.bOMAT7zBYVl78GwoRzFP4GTRq2CWToXoK','ralinthip','sakunain','yam','yam17.tuesday@gmail.com','0834526953',153,'ราชมงคล','2004-02-03','image3184228084906191281.jpg',2,2,3,2,0,'2024-10-28 08:13:38',NULL,NULL,1,0),(126,'Alxne','$2b$10$9MoUFpFhIXgRjsJP91E2WO6L798G2gH74hUSF8fWsiG2RgufwnLyO','Alxne','Dekdee','Alxne','suttipong.poo@rmutto.ac.th','0639542700',175,'กทม','2004-05-22','image7423651299233763588.jpg',3,2,2,1,0,'2024-10-28 08:15:04',NULL,NULL,1,0),(127,'toey','$2b$10$RQ3aSOZcWZ5Pm6DbkbMHnODTsBbSfAAB8P5jW/wymInGa5uQPY57C','Thanon','Srisukarn','Toey','teeprakorn@fff.com','0855111711',900,'Bangkok','1971-10-28','image7663523415649047225.jpg',2,3,1,1,0,'2024-10-28 08:19:57',NULL,NULL,1,0),(128,'kittipob','$2b$10$YvWnr1e85A58rahL0vZ6CeFaRJLlxacw40B3Wjdxq0B8dKIrVpcJa','kittipob','jirapanichakul','nack','kittipob242@gmail.com','0800262835',187,'rmutto','2003-09-22','17b6689f-4501-48ef-8ca3-c2faba18453c.jpg',1,2,3,2,0,'2024-10-28 10:04:25',NULL,NULL,1,1),(129,'wmmyo123','$2b$10$s9okBbtH1hPbNjzzJvoRVO3OxSFXQScvCu6j1yxPcihohcdZLsBJC','Jiratikarn','Prisricram','Dodo','wmmyo123@gmail.com','0958884525',175,'219 Phathum Tanee','2003-12-07','image6929627347264205590.jpg',1,2,4,2,1,'2024-10-29 08:42:49',NULL,NULL,1,0);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -424,7 +424,7 @@ CREATE TABLE `userdislike` (
 
 LOCK TABLES `userdislike` WRITE;
 /*!40000 ALTER TABLE `userdislike` DISABLE KEYS */;
-INSERT INTO `userdislike` VALUES (79,121,119),(83,125,119),(84,125,120),(85,125,121),(86,125,122),(88,126,119),(89,126,120),(90,126,121),(92,126,123),(93,126,124),(95,125,123),(96,125,124),(98,119,121),(100,119,123),(106,128,120),(107,128,121),(108,128,122),(109,128,123),(110,128,124),(111,128,125),(112,128,126),(113,128,127),(117,120,121),(118,120,122),(119,120,123),(120,120,124),(121,120,125),(122,120,126),(123,120,127),(124,120,128),(127,122,126),(128,122,127),(129,122,128),(130,122,119),(133,129,121),(134,129,122),(135,129,123),(136,129,124),(137,129,125),(138,119,122),(139,119,124),(140,119,125),(141,119,126),(142,119,127);
+INSERT INTO `userdislike` VALUES (79,121,119),(83,125,119),(84,125,120),(85,125,121),(86,125,122),(88,126,119),(89,126,120),(90,126,121),(92,126,123),(93,126,124),(95,125,123),(96,125,124),(106,128,120),(107,128,121),(108,128,122),(109,128,123),(110,128,124),(111,128,125),(112,128,126),(113,128,127),(117,120,121),(118,120,122),(119,120,123),(120,120,124),(121,120,125),(122,120,126),(123,120,127),(124,120,128),(127,122,126),(128,122,127),(129,122,128),(130,122,119),(133,129,121),(134,129,122),(135,129,123),(136,129,124),(137,129,125);
 /*!40000 ALTER TABLE `userdislike` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -444,7 +444,7 @@ CREATE TABLE `userlike` (
   KEY `likedID` (`likedID`),
   CONSTRAINT `userlike_ibfk_1` FOREIGN KEY (`likerID`) REFERENCES `user` (`UserID`),
   CONSTRAINT `userlike_ibfk_2` FOREIGN KEY (`likedID`) REFERENCES `user` (`UserID`)
-) ENGINE=InnoDB AUTO_INCREMENT=388 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=399 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -453,7 +453,7 @@ CREATE TABLE `userlike` (
 
 LOCK TABLES `userlike` WRITE;
 /*!40000 ALTER TABLE `userlike` DISABLE KEYS */;
-INSERT INTO `userlike` VALUES (356,126,125),(357,126,125),(358,125,126),(359,126,122),(361,128,119),(366,119,128),(367,119,128),(368,119,128),(371,119,120),(372,120,119),(374,122,120),(375,122,121),(376,122,123),(377,122,124),(378,122,125),(379,129,119),(380,129,120),(381,129,126),(387,119,129);
+INSERT INTO `userlike` VALUES (356,126,125),(357,126,125),(358,125,126),(359,126,122),(361,128,119),(366,119,128),(367,119,128),(368,119,128),(371,119,120),(372,120,119),(374,122,120),(375,122,121),(376,122,123),(377,122,124),(378,122,125),(379,129,119),(380,129,120),(381,129,126),(387,119,129),(388,119,123),(389,119,124),(390,119,125),(391,119,126),(392,119,127),(393,119,121),(394,119,122),(395,119,123),(396,119,124),(397,119,125),(398,119,126);
 /*!40000 ALTER TABLE `userlike` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -525,4 +525,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-10-30 10:45:53
+-- Dump completed on 2024-10-31 13:43:10
