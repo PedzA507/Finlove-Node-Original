@@ -1230,6 +1230,7 @@ app.post('/api_v2/block-chat', (req, res) => {
             console.log(`Swapped values - user1ID: ${user1ID}, user2ID: ${user2ID}`);
         }
 
+        // ดี
         // ตรวจสอบอีกครั้งเพื่อให้มั่นใจว่า user1ID และ user2ID ไม่ซ้ำกัน
         if (user1ID == user2ID) {
             console.log("Detected same IDs for user1ID and user2ID after swapping, correcting user2ID to the other user");
