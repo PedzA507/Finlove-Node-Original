@@ -84,7 +84,7 @@ def recommend(id):
     return jsonify(recommended_users[['UserID', 'nickname', 'imageFile', 'verify']].to_dict(orient='records')), 200
 
 
-@app.route('/api/user/<filename>', methods=['GET'])
+@app.route('/ai/user/<filename>', methods=['GET'])
 def get_user_image(filename):
     # Full path to the image file
     image_path = os.path.join(IMAGE_FOLDER, filename)
