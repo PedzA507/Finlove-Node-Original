@@ -21,6 +21,14 @@ const storage = multer.diskStorage({
     }
 });
 
+const cors = require('cors');
+
+// อนุญาตให้ fin-love.com เข้าถึง API
+app.use(cors({
+    origin: 'https://fin-love.com',  // ตั้งค่าให้ตรงกับโดเมนของคุณ
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],  // ระบุ HTTP methods ที่อนุญาต
+    credentials: true  // หากต้องการให้ส่ง cookies หรือ header การยืนยัน
+}));
 
 const upload = multer({ storage: storage });
 
