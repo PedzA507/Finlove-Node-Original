@@ -38,11 +38,18 @@ app.use(cors({
 
 const upload = multer({ storage: storage });
 
+// const db = mysql.createConnection({
+//     host: process.env.DATABASE_HOST,
+//     user: process.env.DATABASE_user,
+//     password: process.env.DATABASE_PASSWORD,
+//     database: process.env.DATABASE_NAME
+// });
+
 const db = mysql.createConnection({
-    host: process.env.DATABASE_HOST,
-    user: process.env.DATABASE_user,
-    password: process.env.DATABASE_PASSWORD,
-    database: process.env.DATABASE_NAME
+    host: 'localhost',        
+    user: 'root',             
+    password: '1234',         
+    database: 'finlove'       
 });
 
 db.connect();
