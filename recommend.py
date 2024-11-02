@@ -72,11 +72,11 @@ def recommend(id):
     #   AND m.matchID IS NULL
     #   AND (b.isBlocked IS NULL OR b.isBlocked = 0)
     # '''
-    
+
     sql_query = f'''
     SELECT 
-    u.UserID,
-    u.nickname,
+    u.UserID, 
+    u.nickname, 
     u.imageFile,
     u.verify
     FROM user u
@@ -85,13 +85,14 @@ def recommend(id):
     WHERE u.UserID IN ({recommended_user_ids_str})
     AND m.matchID IS NULL
     AND (b.isBlocked IS NULL OR b.isBlocked = 0)
-    AND u.goalID = (SELECT goalID FROM user WHERE UserID = {id})
-    AND u.GenderID != (SELECT GenderID FROM user WHERE UserID = {id})
+    AND u.GenderID = (SELECT interestGenderID FROM user WHERE UserID = {id})  
+    AND u.goalID = (SELECT goalID FROM user WHERE UserID = {id})  
     AND (
-        (SELECT interestGenderID FROM user WHERE UserID = {id}) = 3 
-        OR u.GenderID = (SELECT interestGenderID FROM user WHERE UserID = {id})
+        
+        (SELECT COUNT(*) FROM userpreferences p WHERE p.UserID = u.UserID AND p.PreferenceID IN 
+        (SELECT PreferenceID FROM userpreferences WHERE UserID = {id})) >= 1
     );
-    '''
+'''
 
     recommended_users = pd.read_sql(sql_query, conn)
     conn.close()  # ปิดการเชื่อมต่อหลังจากดึงข้อมูลเสร็จ
