@@ -72,7 +72,7 @@ def recommend(id):
     #   AND m.matchID IS NULL
     #   AND (b.isBlocked IS NULL OR b.isBlocked = 0)
     # '''
-    #
+    
     sql_query = f'''
     SELECT 
     u.UserID,
