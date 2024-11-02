@@ -64,14 +64,6 @@ const config = {
     }
 };
 
-// Access the configuration values where needed
-console.log("Base URL:", config.baseURL);
-console.log("Secret Key:", config.secretKey);
-console.log("Database Host:", config.database.host);
-console.log("Server Port:", config.serverPort);
-console.log("Email Service:", config.emailService.service);
-
-
 db.connect();
 
 app.use(express.json());
