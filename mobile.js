@@ -52,6 +52,26 @@ const db = mysql.createConnection({
     database: 'finlove'       
 });
 
+// Configurations for mobile.js
+const config = {
+    secretKey: 'UX23Y24%@&2aMb',
+    serverPort: 8501,
+    emailService: {
+        service: 'gmail',
+        port: 587,
+        user: 'pedza507@gmail.com',
+        pass: 'dyon lkfk cyzf bsqq'
+    }
+};
+
+// Access the configuration values where needed
+console.log("Base URL:", config.baseURL);
+console.log("Secret Key:", config.secretKey);
+console.log("Database Host:", config.database.host);
+console.log("Server Port:", config.serverPort);
+console.log("Email Service:", config.emailService.service);
+
+
 db.connect();
 
 app.use(express.json());
@@ -403,25 +423,32 @@ app.post('/api_v2/reset-password', async (req, res) => {
 
 
 // API Show All user
-app.get('/api_v2/user', function(req, res) {        
+app.get('/api_v2/user', function(req, res) {
     const sql = "SELECT username, imageFile, preferences, verify FROM user";
     db.query(sql, function(err, result) {
         if (err) throw err;
         
-        if(result.length > 0){
-            res.send(result);
-        } else {
-            res.send({ message: 'ไม่พบข้อมูลผู้ใช้', status: false });
-        }        
+        // ปรับเส้นทาง imageFile ให้เป็น URL
+        result.forEach(user => {
+            if (user.imageFile) {
+                user.imageFile = `${req.protocol}://${req.get('host')}/assets/user/${user.imageFile}`;
+            }
+        });
+
+        res.send(result.length > 0 ? result : { message: 'ไม่พบข้อมูลผู้ใช้', status: false });
     });
 });
 
 
 
-app.get('/api_v2/user/image/:filename', function(req, res){
-    const filepath = path.join(__dirname, 'assets/user', req.params.filename); 
-    res.sendFile(filepath);
+
+app.get('/api_v2/user/image/:filename', function(req, res) {
+    const filepath = path.join(__dirname, 'assets/user', req.params.filename);
+    res.sendFile(filepath, err => {
+        if (err) res.status(404).json({ error: "File not found" });
+    });
 });
+
 
 
 // API View Profile
