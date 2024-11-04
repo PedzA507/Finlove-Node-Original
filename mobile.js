@@ -449,7 +449,7 @@ app.get('/api_v2/user/:id', async function (req, res) {
     const sql = `
     SELECT 
         u.username, u.email, u.firstname, u.lastname, u.nickname, 
-        u.verify,  -- เพิ่มฟิลด์ verify
+        u.verify,
         g.Gender_Name AS gender, ig.interestGenderName AS interestGender, 
         u.height, u.home, u.DateBirth, u.imageFile,
         e.EducationName AS education,
@@ -467,13 +467,16 @@ app.get('/api_v2/user/:id', async function (req, res) {
     `;
 
     try {
-        const [result] = await db.promise().query(sql, [id]);
-        if (result.length > 0) {
-            if (result[0].imageFile) {
-                // แก้ไข path การเข้าถึงรูปภาพจาก assets/user
-                result[0].imageFile = `${req.protocol}://${req.get('host')}/assets/user/${result[0].imageFile}`;
+        const [rows] = await db.promise().query(sql, [id]);
+        
+        // ตรวจสอบให้แน่ใจว่า rows มีข้อมูล
+        if (rows && rows.length > 0) {
+            const user = rows[0]; // กำหนดตัวแปร user เพื่อใช้งานง่าย
+            if (user.imageFile) {
+                user.imageFile = `${req.protocol}://${req.get('host')}/api_v2/user/image/${user.imageFile}`;
+                console.log("Full image URL:", user.imageFile); // ตรวจสอบ URL เต็ม
             }
-            res.send(result[0]);
+            res.send(user);
         } else {
             res.status(404).send({ message: "ไม่พบข้อมูลผู้ใช้", status: false });
         }
@@ -484,6 +487,7 @@ app.get('/api_v2/user/:id', async function (req, res) {
 });
 
 
+
 // API View OtherProfile
 app.get('/api_v2/profile/:id', async function (req, res) {
     const { id } = req.params;
@@ -492,7 +496,7 @@ app.get('/api_v2/profile/:id', async function (req, res) {
         u.firstname, 
         u.lastname, 
         u.nickname, 
-        u.verify,  -- เพิ่มฟิลด์ verify
+        u.verify,
         g.Gender_Name AS gender, 
         COALESCE(GROUP_CONCAT(DISTINCT p.PreferenceNames), 'ไม่มีความชอบ') AS preferences,
         u.imageFile
@@ -505,13 +509,20 @@ app.get('/api_v2/profile/:id', async function (req, res) {
     `;
 
     try {
-        const [result] = await db.promise().query(sql, [id]);
-        if (result.length > 0) {
-            if (result[0].imageFile) {
-                // แก้ไข path การเข้าถึงรูปภาพจาก assets/user
-                result[0].imageFile = `${req.protocol}://${req.get('host')}/assets/user/${result[0].imageFile}`;
+        // เรียกใช้ query และตรวจสอบผลลัพธ์
+        const [rows] = await db.promise().query(sql, [id]);
+        console.log('Database query result:', rows); // ตรวจสอบผลลัพธ์ใน console
+
+        // ตรวจสอบให้แน่ใจว่า rows มีข้อมูล
+        if (rows && rows.length > 0) {
+            const user = rows[0]; // กำหนดตัวแปร user เพื่อใช้งานง่าย
+            if (user.imageFile) {
+                user.imageFile = `${req.protocol}://${req.get('host')}/api_v2/user/image/${user.imageFile}`;
+                console.log("Full image URL:", user.imageFile); // ตรวจสอบ URL เต็ม
+            } else {
+                console.log("No image file for user:", id);
             }
-            res.send(result[0]);
+            res.send(user);
         } else {
             res.status(404).send({ message: "ไม่พบข้อมูลผู้ใช้", status: false });
         }
@@ -520,6 +531,7 @@ app.get('/api_v2/profile/:id', async function (req, res) {
         res.status(500).send({ message: "เกิดข้อผิดพลาดในการดึงข้อมูลผู้ใช้", status: false });
     }
 });
+
 
 
 // API Update user
@@ -1082,8 +1094,10 @@ app.get('/api_v2/matches/:userID', (req, res) => {
         }
 
         results.forEach(user => {
-            if (user.imageFile) {
-                user.imageFile = `${req.protocol}://${req.get('host')}/assets/user/${user.imageFile}`;
+            if (user.imageFile && !user.imageFile.startsWith('http')) {
+                // เพิ่ม URL แบบเต็มเฉพาะเมื่อ imageFile ไม่ได้เริ่มด้วย "http"
+                user.imageFile = `${req.protocol}://${req.get('host')}/api_v2/user/image/${user.imageFile}`;
+                console.log("Full image URL:", user.imageFile); // ตรวจสอบ URL เต็ม
             }
 
             if (user.lastMessage === null) {
