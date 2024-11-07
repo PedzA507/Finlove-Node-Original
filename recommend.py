@@ -58,21 +58,6 @@ def recommend(id):
 
     recommended_user_ids_str = ', '.join(map(str, recommended_user_ids))
 
-    # ดึงข้อมูลผู้ใช้แนะนำที่ยังไม่ได้จับคู่หรือบล็อก
-    # sql_query = f'''
-    # SELECT 
-    #     u.UserID, 
-    #     u.nickname, 
-    #     u.imageFile,
-    #     u.verify
-    # FROM user u
-    # LEFT JOIN matches m ON (m.user1ID = u.UserID AND m.user2ID = {id}) OR (m.user2ID = u.UserID AND m.user1ID = {id})
-    # LEFT JOIN blocked_chats b ON (b.user1ID = {id} AND b.user2ID = u.UserID) OR (b.user2ID = {id} AND b.user1ID = u.UserID)
-    # WHERE u.UserID IN ({recommended_user_ids_str})
-    #   AND m.matchID IS NULL
-    #   AND (b.isBlocked IS NULL OR b.isBlocked = 0)
-    # '''
-
     sql_query = f'''
     SELECT 
     u.UserID, 
