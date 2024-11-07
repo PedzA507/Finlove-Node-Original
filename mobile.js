@@ -238,6 +238,12 @@ app.post('/api_v2/register8', upload.single('imageFile'), async function(req, re
     }
 
     try {
+        // ตรวจสอบว่าอีเมลหรือชื่อผู้ใช้ซ้ำหรือไม่
+        const [existingUser] = await db.promise().query("SELECT * FROM user WHERE email = ? OR username = ?", [email, username]);
+        if (existingUser.length > 0) {
+            return res.status(409).send({ "message": "อีเมลหรือชื่อผู้ใช้ซ้ำ กรุณาใช้ข้อมูลใหม่", "status": false });
+        }
+
         // ทำการ hash รหัสผ่าน
         const hashedPassword = await bcrypt.hash(password, saltRounds);
 
@@ -279,6 +285,7 @@ app.post('/api_v2/register8', upload.single('imageFile'), async function(req, re
         res.status(500).send({ "message": "บันทึกลง FinLove ล้มเหลว", "status": false });
     }
 });
+
 
 
 
