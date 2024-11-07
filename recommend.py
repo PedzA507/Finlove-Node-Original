@@ -82,17 +82,19 @@ def recommend(id):
     FROM user u
     LEFT JOIN matches m ON (m.user1ID = u.UserID AND m.user2ID = {id}) OR (m.user2ID = u.UserID AND m.user1ID = {id})
     LEFT JOIN blocked_chats b ON (b.user1ID = {id} AND b.user2ID = u.UserID) OR (b.user2ID = {id} AND b.user1ID = u.UserID)
+    LEFT JOIN userlike l ON (l.userID = {id} AND l.likedUserID = u.UserID)
     WHERE u.UserID IN ({recommended_user_ids_str})
     AND m.matchID IS NULL
     AND (b.isBlocked IS NULL OR b.isBlocked = 0)
+    AND l.likeID IS NULL  -- ตรวจสอบว่า user ยังไม่เคยถูกกดไลค์โดยผู้ใช้ {id}
     AND u.GenderID = (SELECT interestGenderID FROM user WHERE UserID = {id})  
     AND u.goalID = (SELECT goalID FROM user WHERE UserID = {id})  
     AND (
-        
         (SELECT COUNT(*) FROM userpreferences p WHERE p.UserID = u.UserID AND p.PreferenceID IN 
         (SELECT PreferenceID FROM userpreferences WHERE UserID = {id})) >= 1
     );
 '''
+
 
     recommended_users = pd.read_sql(sql_query, conn)
     conn.close()  # ปิดการเชื่อมต่อหลังจากดึงข้อมูลเสร็จ
